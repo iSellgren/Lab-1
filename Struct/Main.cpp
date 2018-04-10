@@ -40,15 +40,14 @@ int main()
 		std::cout << " 1 - Sök del av personnamn.\n";
 		std::cout << " 2 - Sök städer.\n";
 		std::cout << " 3 - Exit.\n";
-		std::cout << " Välj alternativ och tryck Enter: ";
+		std::cout << " Välj alternativ och tryck Enter: \n";
+		std::cout << "#######################################\n";
 
 		std::cin >> choice;
-		if (!std::cin) // or if(cin.fail())
+		if (!std::cin)
 		{
-			// user didn't input a number
-			std::cin.clear(); // reset failbit
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //skip bad input
-																		   // next, request user reinput
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
 
 		switch (choice)
