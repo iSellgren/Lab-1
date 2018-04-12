@@ -1,13 +1,5 @@
-#include <iostream>
-#include <fstream>
-#include<vector>
-#include<string>
-#include<time.h>
-#include<algorithm>
-#include<cctype>
-#include <locale>
-#include<Windows.h>
 #include "Structs.h"
+#undef max
 
 
 
@@ -28,7 +20,7 @@ int main()
 		while(file >> p)
 			personer.push_back(p);
 
-	int choice;
+	int choice = 0;
 	size_t count = 0;
 	std::wstring lookfor = L" ";
 	std::vector<person> matched_persons;
@@ -36,19 +28,19 @@ int main()
 	bool MenuOn = true;
 	while (MenuOn != false) {
 		system("CLS");
-		std::cout << "#######################################\n";
-		std::cout << " 1 - Sök del av personnamn.\n";
-		std::cout << " 2 - Sök städer.\n";
-		std::cout << " 3 - Exit.\n";
-		std::cout << " Välj alternativ och tryck Enter: \n";
-		std::cout << "#######################################\n";
+		std::wcout << "#######################################\n";
+		std::wcout << " 1 - Sök del av personnamn.\n";
+		std::wcout << " 2 - Sök städer.\n";
+		std::wcout << " 3 - Exit.\n";
+		std::wcout << " Välj alternativ och tryck Enter: \n";
+		std::wcout << "#######################################\n";
 
 		std::cin >> choice;
 		if (!std::cin)
-		{
+
 			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		}
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
 
 		switch (choice)
 		{
@@ -57,15 +49,15 @@ int main()
 			std::wcout << "Sök del av personnamn!\n";
 			std::wcout << "Skriv namnet du söker!\n";
 			std::wcin >> lookfor;
-			long count;
+			size_t count;
 			count = find_in_names(personer, lookfor);
 			std::wcout << "Det finns " << count << " Personer innehållande " << lookfor << std::endl;
 			Sleep(3000);
-			
+
 			break;
 
 		case 2:
-			
+
 			system("CLS");
 			std::wcout << "Sök städer.\n";
 			std::wcout << "Skriv staden du söker!\n";
@@ -76,22 +68,28 @@ int main()
 			for (size_t i = 0; i < matched_persons.size(); i++)
 				std::wcout << "Personen som hittades är " << matched_persons[i].name << ", bor i " << matched_persons[i].adress.city << std::endl;
 			Sleep(3000);
+
 			break;
+
 		case 3:
-			std::cout << "Du valde att avsluta programmet\n";
+			std::wcout << "Du valde att avsluta programmet\n";
+
 			Sleep(3000);
 			MenuOn = 0;
+
 			break;
+
 		default:
 
-			std::cout << "Fel inmatning.\n";
-			std::cout << "Välj igen.\n";
+			std::wcout << "Fel inmatning.\n";
+			std::wcout << "Välj igen.\n";
 			std::cin >> choice;
+
 			break;
-		}
+		}choice = 0;
+
+
 	}
-
-
 	return 0;
 
 }
